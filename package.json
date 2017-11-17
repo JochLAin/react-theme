@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/jfaihy/reactstrap.git"
+    "url": "git+ssh://git@github.com/JochLAin/react-theme.git"
   },
   "keywords": [
     "react",
@@ -33,5 +33,5 @@
     "react-dom": "^16.0.0"
   },
   "author": "Jocelyn FAIHY <jocelyn@faihy.fr>",
-  "license": "MIT"
+  "license": "SEE LICENSE IN LICENSE"
 }
