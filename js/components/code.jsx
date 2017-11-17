@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import hljs from 'highlight.js';
-import '@stylesheets/hljs/solarized-dark';
 
 export default class Code extends Component {
     static propTypes = {

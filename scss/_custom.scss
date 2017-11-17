@@ -1,0 +1,24 @@
+@import "material";
+
+$action-offset:             2rem !default;
+$btn-action-diameter:       3rem !default;
+$btn-action-item-diameter:  2rem !default;
+$navbar-height:             3rem !default;
+$scrollbar-size:            .5rem !default;
+$scrollbar-foreground:      slategray !default;
+$scrollbar-background:      mix($scrollbar-foreground, white, 50%) !default;
+
+$colors: () !default;
+$colors: map-merge($colors, $material-colors);
+
+$primary:       #007bff;
+$secondary:     $grey-600;
+$success:       #28a745;
+$info:          #17a2b8;
+$warning:       #ffc107;
+$danger:        #dc3545;
+$light:         $grey-100;
+$dark:          $grey-800;
+
+$theme-colors: () !default;
+$theme-colors: map-merge($theme-colors, $colors);

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import Tag from './tag';
-import * as icons from '@constants/bootstrap/icon';
+import * as icons from '../constants/icon';
 
 export default class Icon extends Component {
     static propTypes = {

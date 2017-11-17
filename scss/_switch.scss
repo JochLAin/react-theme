@@ -1,0 +1,41 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 4rem;
+  height: 2rem;
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    > .slider-inner {
+      border: 1px solid;
+      position: absolute;
+      content: "";
+      height: 2rem;
+      width: 2rem;
+      background-color: white;
+      transition: transform .4s;
+    }
+
+    &.slider-rounded {
+      border-radius: 50%;
+
+      > .slider-inner {
+        border-radius: 50%;
+      }
+    }
+
+    &:focus {
+      box-shadow: 0 0 1px #2196F3;
+    }
+  }
+
+  &.active > .slider > .slider-inner {
+    transform: translateX(2rem);
+  }
+}

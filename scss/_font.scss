@@ -1,0 +1,14 @@
+$font-path: '../fonts';
+@font-face {
+    font-family: 'Unicode';
+    src: url('#{$font-path}/unicode.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'UnicodeMahjong';
+    src: url('#{$font-path}/unicode_majhong.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

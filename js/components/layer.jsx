@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import Tag from './tag';
-import { middle } from '@constants/stylesheets';
+import { middle } from '../constants/stylesheets';
 
 export default class Layer extends Component {
     static propTypes = {

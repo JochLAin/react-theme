@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import Dropdown, { DropdownInner, DropdownItem, DropdownToggle } from './dropdown';
 import Tag from './tag';
-import { slugify } from '@utils';
+import { slugify } from '../utils';
 
 export class NavItem extends Component {
     static propTypes = {

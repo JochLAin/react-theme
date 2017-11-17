@@ -4,7 +4,9 @@
   "description": "React Theme with Bootstrap, FontAwesome",
   "main": "index.jsx",
   "directories": {
-    "lib": "lib"
+    "js": "js",
+    "scss": "scss",
+    "woff": "woff"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,31 +25,12 @@
     "bootstrap": "^4.0.0-beta.2",
     "classnames": "^2.2.5",
     "fontawesome": "^4.7.2",
+    "highlight.js": "^9.12.0",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
-  },
-  "optionalDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^6.4.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-runtime": "^6.26.0",
-    "css-loader": "^0.25.0",
-    "file-loader": "^0.11.2",
-    "node-sass": "^4.6.1",
-    "raw-loader": "^0.5.1",
-    "sass-loader": "^4.1.1",
-    "sass-resources-loader": "^1.3.1",
-    "style-loader": "^0.13.2",
-    "webpack": "^2.7.0"
   },
   "author": "Jocelyn FAIHY <jocelyn@faihy.fr>",
   "license": "MIT"

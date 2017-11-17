@@ -4,7 +4,7 @@ import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import Tag from './tag';
-import Transition from '@components/theme/transition';
+import Transition from './transition';
 
 const LEFT = 'left';
 const RIGHT = 'right';
