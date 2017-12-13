@@ -1,0 +1,15 @@
+.sidebar {
+    height: 100%;
+    overflow-y: auto;
+    padding: 0;
+    width: auto;
+
+    &.sidebar-layout {
+        height: 100vh;
+        max-height: calc(100vh - #{$navbar-height});
+    }
+
+    .collapse, .collapsing {
+        margin-left: 1rem;
+    }
+}

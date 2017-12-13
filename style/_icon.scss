@@ -1,0 +1,46 @@
+.icon {
+    background: $white;
+    color: $black;
+    font-size: 100px;
+    line-height: 1;
+    overflow: hidden;
+
+    &.icon-card {
+        font-family: Card;
+        line-height: 0.98;
+
+        &.card-hidden {
+            &.card-vertical {
+                height: 1rem;
+            }
+            &:not('.card-hidden') {
+                width: 1rem;
+            }
+        }
+    }
+
+    &.icon-chess {
+        font-family: Chess;
+    }
+
+    &.icon-checkers {
+        font-family: Checkers;
+    }
+
+    &.icon-dice {
+        font-family: Dice;
+        overflow: visible;
+    }
+
+    &.icon-domino {
+        font-family: Domino;
+    }
+
+    &.icon-mahjong {
+        font-family: Mahjong;
+    }
+
+    &.icon-zodiac {
+        font-family: Zodiac;
+    }
+}

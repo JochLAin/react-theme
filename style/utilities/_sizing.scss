@@ -1,0 +1,36 @@
+.h-0 { height: 0 !important; }
+.h-1 { height: 1rem !important; }
+.h-25 { height: 25% !important; }
+.h-50 { height: 50% !important; }
+.h-75 { height: 75% !important; }
+
+.w-0 { width: 0 !important; }
+.w-1 { width: 1rem !important; }
+.w-25 { width: 25% !important; }
+.w-50 { width: 50% !important; }
+.w-75 { width: 75% !important; }
+
+.wh-1 { height: 1em !important; }
+.ww-1 { width: 1.3ch !important; }
+.ww-80 { width: 80 * 1.3ch !important; }
+
+.f-box {
+    height: 100% !important;
+    width: 100% !important;
+}
+.f-column {
+    height: 100% !important;
+}
+.f-line {
+    width: 100% !important;
+}
+
+.d-flex-center {
+    display: flex !important;
+    justify-content: center !important;
+}
+.d-flex-middle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}

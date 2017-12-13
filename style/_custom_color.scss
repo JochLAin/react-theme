@@ -1,0 +1,18 @@
+@import "custom";
+@import "material";
+
+$colors: () !default;
+$colors: map-merge($colors, $material-colors);
+
+$primary:       #007bff;
+$secondary:     $grey-600;
+$success:       #28a745;
+$info:          #17a2b8;
+$warning:       #ffc107;
+$danger:        #dc3545;
+$light:         $grey-100;
+$dark:          $grey-800;
+$darker:          $grey-800;
+
+$theme-colors: () !default;
+$theme-colors: map-merge($theme-colors, $colors);

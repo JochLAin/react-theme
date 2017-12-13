@@ -1,0 +1,10 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+        .justify-self#{$infix}-start   { justify-self: flex-start !important; }
+        .justify-self#{$infix}-end     { justify-self: flex-end !important; }
+        .justify-self#{$infix}-center  { justify-self: center !important; }
+        .justify-self#{$infix}-between { justify-self: space-between !important; }
+        .justify-self#{$infix}-around  { justify-self: space-around !important; }
+    }
+}

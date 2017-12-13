@@ -1,0 +1,63 @@
+$theme-font-path: '~react-theme/fonts' !default;
+@font-face {
+    font-family: 'Card';
+    src: url('#{$theme-font-path}/card.eot'),
+         url('#{$theme-font-path}/card.ttf') format('truetype'),
+         url('#{$theme-font-path}/card.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Checkers';
+    src: url('#{$theme-font-path}/checkers.eot'),
+         url('#{$theme-font-path}/checkers.ttf') format('truetype'),
+         url('#{$theme-font-path}/checkers.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Chess';
+    src: url('#{$theme-font-path}/chess.eot'),
+         url('#{$theme-font-path}/chess.ttf') format('truetype'),
+         url('#{$theme-font-path}/chess.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Dice';
+    src: url('#{$theme-font-path}/dice.eot'),
+         url('#{$theme-font-path}/dice.ttf') format('truetype'),
+         url('#{$theme-font-path}/dice.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Domino';
+    src: url('#{$theme-font-path}/domino.eot'),
+         url('#{$theme-font-path}/domino.ttf') format('truetype'),
+         url('#{$theme-font-path}/domino.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mahjong';
+    src: url('#{$theme-font-path}/mahjong.eot'),
+         url('#{$theme-font-path}/mahjong.ttf') format('truetype'),
+         url('#{$theme-font-path}/mahjong.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Zodiac';
+    src: url('#{$theme-font-path}/zodiac.eot'),
+         url('#{$theme-font-path}/zodiac.ttf') format('truetype'),
+         url('#{$theme-font-path}/zodiac.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
