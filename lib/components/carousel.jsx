@@ -9,24 +9,41 @@ import Transition from './transition';
 const LEFT = 'left';
 const RIGHT = 'right';
 
+/**
+ * Bootstrap Carousel integration
+ * @see [Bootstrap Carousel]{@link https://getbootstrap.com/docs/4.0/components/carousel/}
+ *
+ * @class CarouselControlled
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} props - Component properties
+ * @property {Number} [props.active] - Item index shown
+ * @property {Number} [props.interval] - Interval between item index change (in ms)
+ * @property {Boolean} [props.keyboard] - Allow keyboard controls
+ * @property {Boolean} [props.pause] - Specify if pause on hover
+ * @property {Function} props.previous - Callback to pass on previous item
+ * @property {Function} props.next - Callback to pass on next item
+ * @property {Boolean} [props.ride] - Specify if carousel can ride items on mount
+ * @property {Boolean} [props.slide] - Specify slide animation is used
+ */
 class CarouselControlled extends Component {
     static propTypes = {
         ...Tag.propTypes,
         active: PropTypes.number,
         interval: PropTypes.oneOfType([ PropTypes.number, PropTypes.string, PropTypes.bool ]),
         keyboard: PropTypes.bool,
-        next: PropTypes.func.isRequired,
-        pause: PropTypes.oneOf(['hover', false]),
-        previous: PropTypes.func.isRequired,
-        onMouseEnter: PropTypes.func,
+        pause: PropTypes.bool,
+        previous: PropTypes.func,
+        next: PropTypes.func,
         ride: PropTypes.bool,
         slide: PropTypes.bool,
-        onMouseLeave: PropTypes.func,
     };
 
     static defaultProps = {
         interval: 5000,
-        pause: 'hover',
+        pause: true,
         keyboard: true,
         onMouseEnter: () => {},
         onMouseLeave: () => {},
@@ -58,10 +75,17 @@ class CarouselControlled extends Component {
     }
 
     render() {
-        const { active, className, interval, keyboard, next, onMouseEnter, onMouseLeave, pause, previous, ride, slide, ...props } = Transition.getOtherProps(this.props);
+        const { 
+            active, className, interval, keyboard, 
+            next, onMouseEnter, onMouseLeave, pause, 
+            previous, ride, slide, ...props 
+        } = Transition.getOtherProps(this.props);
         const classes = Classnames(className, 'carousel', { slide });
 
-        return <Tag {...props} className={classes} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseEnter} />
+        return <Tag {...props} className={classes} 
+            onMouseEnter={this.onMouseEnter} 
+            onMouseLeave={this.onMouseEnter} 
+        />
     }
 
     componentWillUnmount() {
@@ -77,14 +101,16 @@ class CarouselControlled extends Component {
             }, Number(props.interval));
         }
     }
+
     clearInterval = () => this.interval && clearInterval(this.interval);
 
     onMouseEnter = () => {
-        if (this.props.pause == 'hover') this.clearInterval();
+        if (this.props.pause) this.clearInterval();
         this.props.onMouseEnter(...arguments);
     }
+
     onMouseLeave = () => {
-        if (this.props.pause == 'hover') this.setInterval();
+        if (this.props.pause) this.setInterval();
         this.props.onMouseLeave(...arguments);
     }
 
@@ -99,8 +125,23 @@ class CarouselControlled extends Component {
     }
 }
 
+/**
+ * Bootstrap Carousel simplier integration
+ * @see [Bootstrap Carousel]{@link https://getbootstrap.com/docs/4.0/components/carousel/}
+ *
+ * @class Carousel
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.CarouselControlled
+ * @property {Object} [props] - Component properties
+ * @property {Boolean|Element} [props.controls] - Specify to use control arrows
+ * @property {Boolean|Element} [props.indicators] - Specify to use indocator points
+ * @property {Boolean} [props.controlled] - Set carousel to controlled state
+ */
 export default class Carousel extends Component {
     static propTypes = {
+        ...CarouselControlled.propTypes,
         controls: PropTypes.oneOfType([PropTypes.bool, PropTypes.element]),
         indicators: PropTypes.oneOfType([PropTypes.bool, PropTypes.element]),
         controlled: PropTypes.bool,
@@ -108,8 +149,14 @@ export default class Carousel extends Component {
 
     animating = false;
     state = { active: this.props.active || 0 };
-    previous = () => !this.animating && this.setState({ active: !this.state.active ? (Children.toArray(this.props.children).length - 1) : (this.state.active - 1) });
-    next = () => !this.animating && this.setState({ active: (this.state.active + 1) % Children.toArray(this.props.children).length });
+    previous = () => !this.animating && this.setState({ 
+        active: !this.state.active 
+            ? (Children.toArray(this.props.children).length - 1) 
+            : (this.state.active - 1) 
+    });
+    next = () => !this.animating && this.setState({ 
+        active: (this.state.active + 1) % Children.toArray(this.props.children).length 
+    });
     count = this.props.children.length || 1;
 
     componentWillReceiveProps(props) {
@@ -126,7 +173,12 @@ export default class Carousel extends Component {
         let { children, controls, indicators, next, previous, slide, ...props } = Transition.getOtherProps(_props);
 
         return <CarouselControlled {...props} active={this.state.active} next={this.next} previous={this.previous} slide={slide}>
-            {children.length && indicators && <CarouselIndicators active={this.state.active} count={children.length} onClick={active => this.setState({ active })} />}
+            {children.length && indicators && (
+                <CarouselIndicators 
+                    active={this.state.active} count={children.length} 
+                    onClick={active => this.setState({ active })}
+                />
+            )}
             <CarouselInner>
                 { Children.map(children, (child, index) => {
                     return React.cloneElement(child, {
@@ -150,11 +202,28 @@ export default class Carousel extends Component {
                     });
                 })}
             </CarouselInner>
-            {children.length && controls && <CarouselControls onPrevious={this.previous} onNext={this.next} />}
+            {children.length && controls && (
+                <CarouselControls 
+                    onPrevious={this.previous} 
+                    onNext={this.next}
+                />)}
         </CarouselControlled>
     }
 }
 
+/**
+ * Bootstrap Carousel Caption integration
+ * @see [Bootstrap Carousel Caption]{@link https://getbootstrap.com/docs/4.0/components/carousel/#with-captions}
+ *
+ * @class CarouselCaption
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {String|Element} [props.header] - Header caption element
+ * @property {String|Element} [props.text] - Text caption element
+ */
 export class CarouselCaption extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -178,6 +247,17 @@ export class CarouselCaption extends Component {
     }
 }
 
+/**
+ * Bootstrap Carousel Caption Header integration
+ * @see [Bootstrap Carousel Caption Header]{@link https://getbootstrap.com/docs/4.0/components/carousel/#with-captions}
+ *
+ * @class CarouselCaptionHeader
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class CarouselCaptionHeader extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -192,6 +272,17 @@ export class CarouselCaptionHeader extends Component {
     }
 }
 
+/**
+ * Bootstrap Carousel Caption Text integration
+ * @see [Bootstrap Carousel Caption Text]{@link https://getbootstrap.com/docs/4.0/components/carousel/#with-captions}
+ *
+ * @class CarouselCaptionText
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class CarouselCaptionText extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -206,6 +297,17 @@ export class CarouselCaptionText extends Component {
     }
 }
 
+/**
+ * Bootstrap Carousel Controls integration
+ * @see [Bootstrap Carousel Controls]{@link https://getbootstrap.com/docs/4.0/components/carousel/#with-controls}
+ *
+ * @class CarouselControls
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class CarouselControls extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -220,7 +322,9 @@ export class CarouselControls extends Component {
         const { className, pointer, onPrevious, onNext, ...props } = this.props;
         return [
             <Tag key={`carousel-controls-prev`} 
-                pointer={pointer && (typeof pointer == 'string' ? `${pointer}-left` : function () { return pointer(...arguments, 'left'); })} 
+                pointer={pointer && (typeof pointer == 'string' ? `${pointer}-left` : 
+                    function () { return pointer(...arguments, 'left'); }
+                )} 
                 {...props}
                 onClick={onPrevious}
                 className={Classnames(className, 'carousel-control-prev')} 
@@ -229,7 +333,9 @@ export class CarouselControls extends Component {
                 <span className="sr-only">Précédent</span>
             </Tag>,
             <Tag key={`carousel-controls-next`} 
-                pointer={pointer && (typeof pointer == 'string' ? `${pointer}-right` : function () { return pointer(...arguments, 'right'); })} 
+                pointer={pointer && (typeof pointer == 'string' ? `${pointer}-right` : 
+                    function () { return pointer(...arguments, 'right'); }
+                )} 
                 {...props} 
                 onClick={onNext}
                 className={Classnames(className, 'carousel-control-next')} 
@@ -241,12 +347,23 @@ export class CarouselControls extends Component {
     }
 }
 
+/**
+ * Bootstrap Carousel Indicators integration
+ * @see [Bootstrap Carousel Indicators]{@link https://getbootstrap.com/docs/4.0/components/carousel/#with-indicators}
+ *
+ * @class CarouselIndicators
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class CarouselIndicators extends Component {
     static propTypes = {
         ...Tag.propTypes,
-        active: PropTypes.number.isRequired,
-        count: PropTypes.number.isRequired,
-        onClick: PropTypes.func.isRequired,
+        active: PropTypes.number,
+        count: PropTypes.number,
+        onClick: PropTypes.func,
     };
 
     static defaultProps = {
@@ -270,10 +387,20 @@ export class CarouselIndicators extends Component {
     }
 }
 
+/**
+ * Bootstrap Carousel Inner integration
+ * @see [Bootstrap Carousel]{@link https://getbootstrap.com/docs/4.0/components/carousel/}
+ * 
+ * @class CarouselInner
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class CarouselInner extends Component {
     static propTypes = {
         ...Tag.propTypes,
-        role: PropTypes.string,
     };
 
     static defaultProps = {
@@ -288,18 +415,38 @@ export class CarouselInner extends Component {
     }
 }
 
+/**
+ * Bootstrap Carousel Item integration
+ * @see [Bootstrap Carousel]{@link https://getbootstrap.com/docs/4.0/components/carousel/}
+ *
+ * @class CarouselItem
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @root Theme.Transition
+ * @property {Object} [props] - Component properties
+ * @property {String} [props.alt] - Item image's alt text
+ * @property {String} [props.src] - Item image's url
+ * @property {Boolean} [props.active] - Specify item is active
+ * @property {Number} [props.count] - Number of items inside carousel
+ * @property {Number} [props.index] - Item's index inside carousel
+ * @property {Number} [props.current] - Current index inside carousel
+ * @property {Boolean} [props.slide] - Specify slide animation is used
+ */
 export class CarouselItem extends Component {
     static propTypes = {
         ...Tag.propTypes,
         ...Transition.propTypes,
         alt: PropTypes.string,
-        src: PropTypes.string.isRequired,
+        src: PropTypes.string,
         active: PropTypes.bool,
         count: PropTypes.number,
         index: PropTypes.number,
         current: PropTypes.number,
         slide: PropTypes.bool,
     };
+
     static contextTypes = {
         direction: PropTypes.string
     };

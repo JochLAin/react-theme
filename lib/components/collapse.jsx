@@ -6,12 +6,26 @@ import Classnames from 'classnames';
 import Tag from './tag';
 import Transition from './transition';
 
+/**
+ * Bootstrap Collapse integration
+ * @see [Bootstrap Collapse]{@link https://getbootstrap.com/docs/4.0/components/collapse/}
+ *
+ * @class Code
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @root Theme.Transition
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Set collapse to active state
+ * @property {Boolean} [props.navbar] - Specify element to navbar collapse
+ * @property {Boolean} [props.reset] - Unmount element on hide children  
+ */
 export default class Collapse extends Component {
     static propTypes = {
         ...Tag.propTypes,
         ...Transition.propTypes,
         active: PropTypes.bool,
-        className: PropTypes.node,
         navbar: PropTypes.bool,
         reset: PropTypes.bool,
     };
@@ -25,6 +39,7 @@ export default class Collapse extends Component {
         tag: 'article',
         timeout: 350,
     };
+
     state = { height: null };
 
     render() {
@@ -85,6 +100,9 @@ export default class Collapse extends Component {
 
         let classes = Classnames(className, this.getTransitionClass(status), navbar && 'navbar-collapse');
         const style = height === null ? null : { height };
-        return <Tag {...props} className={classes} style={{ ...props.style, ...style }} children={reset ? status != Transition.EXITED && children : children} />
+        return <Tag {...props} className={classes} 
+            style={{ ...props.style, ...style }} 
+            children={reset ? status != Transition.EXITED && children : children} 
+        />
     }
 }

@@ -7,6 +7,21 @@ import Classnames from 'classnames';
 import Fade from './transition/fade';
 import Tag from './tag';
 
+/**
+ * Bootstrap Popover integration
+ * @see [Bootstrap Popovers]{@link https://getbootstrap.com/docs/4.0/components/popovers/}
+ *
+ * @class PopoverControlled
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Set popover to active state
+ * @property {Function} [props.enable] - Set popover to active state
+ * @property {Function} [props.disable] - Set popover to inactive state
+ * @property {Function} [props.toggle] - Toggle popover to active state
+ */
 class PopoverControlled extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -14,11 +29,11 @@ class PopoverControlled extends Component {
         enable: PropTypes.func,
         disable: PropTypes.func,
         toggle: PropTypes.func,
-    }
+    };
 
     static defaultProps = {
         tag: 'span',
-    }
+    };
 
     static childContextTypes = {
         popover: PropTypes.shape({
@@ -46,7 +61,7 @@ class PopoverControlled extends Component {
 
     render() {
         const { active, className, direction, enable, disable, toggle, ...props } = this.props;
-        const classes = Classnames(className, 'popover');
+        const classes = Classnames(className, 'popover-layout');
         return <Tag {...props} className={classes} />
     }
 
@@ -77,10 +92,23 @@ class PopoverControlled extends Component {
     }
 }
 
+/**
+ * Bootstrap Popover simplier integration
+ * @see [Bootstrap Popovers]{@link https://getbootstrap.com/docs/4.0/components/popovers/}
+ *
+ * @class Popover
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.controlled] - Set popover to controlled state
+ */
 export default class Popover extends Component {
     static propTypes = {
+        ...PopoverControlled.propTypes,
         controlled: PropTypes.bool,
-    }
+    };
 
     state = { focused: false, hovered: false, inside: false };
     enable = () => this.setState({ hovered: true, inside: true });
@@ -97,7 +125,10 @@ export default class Popover extends Component {
     render() {
         let { controlled, ...props } = this.props;
         if (controlled) return <PopoverControlled {...props} />
-        return <PopoverControlled {...props} active={this.state.focused || this.state.inside} enable={this.enable} disable={this.disable} toggle={this.toggle} />
+        return <PopoverControlled {...props} 
+            active={this.state.focused || this.state.inside} 
+            enable={this.enable} disable={this.disable} toggle={this.toggle} 
+        />
     }
 
     componentWillUnmount() {
@@ -105,18 +136,30 @@ export default class Popover extends Component {
     }
 }
 
+/**
+ * Bootstrap Popover Inner integration
+ * @see [Bootstrap Popovers]{@link https://getbootstrap.com/docs/4.0/components/popovers/}
+ *
+ * @class PopoverInner
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean|String|Number} [props.arrow] - Specify what kind of arrow appear
+ * @property {String} [props.direction] - Specify direction where popover will appear (auto|top|bottom|left|right)
+ */
 export class PopoverInner extends Component {
     static propTypes = {
+        ...Fade.propTypes,
         arrow: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
         direction: PropTypes.oneOf(['auto', 'top','bottom','left','right']),
-        ...Tag.propTypes,
-        transition: PropTypes.shape(Fade.propTypes),
-    }
+    };
 
     static defaultProps = {
         tag: 'article',
         direction: 'auto',
-    }
+    };
 
     static contextTypes = {
         popover: PropTypes.shape({
@@ -127,16 +170,19 @@ export class PopoverInner extends Component {
             setTarget: PropTypes.func.isRequired,
             getTarget: PropTypes.func.isRequired,
         })
-    }
+    };
 
     render() {
         const { active } = this.context.popover;
         const { arrow, className, children, direction, transition, ...props } = this.props;
-        const classes = Classnames(className, 'popover-inner', `popover-${this.props.direction}`, { active });
-        const arrowClasses = Classnames(className, 'arrow', arrow === true && 'arrow-middle');
+        const classes = Classnames(className, 'popover', `popover-${this.props.direction}`, { active });
+        const arrowClasses = Classnames(className, 'arrow', arrow === true ? 'arrow-middle' : `arrow-${arrow}`);
 
-        return <Fade {...props} {...transition} className={classes} active={this.context.popover.active} role="popover" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-            {arrow && <section className={arrowClasses} />}
+        return <Fade {...props} {...transition} className={classes}  role="popover" 
+            active={this.context.popover.active}
+            onMouseEnter={this.onMouseEnter} 
+            onMouseLeave={this.onMouseLeave}>
+            {arrow === true ? <section className={arrowClasses} /> : arrow}
             {children}
         </Fade>
     }
@@ -171,7 +217,6 @@ export class PopoverInner extends Component {
     setOffsetLeft = (target, popper, direction) => {
         switch (direction) {
             case 'left':
-                popper.style.left = 'auto';
                 popper.style.right = `${target.offsetWidth}px`;
                 break;
             case 'right':
@@ -187,7 +232,6 @@ export class PopoverInner extends Component {
     setOffsetTop = (target, popper, direction) => {
         switch (direction) {
             case 'top':
-                popper.style.top = 'auto';
                 popper.style.bottom = `${target.offsetHeight}px`;
                 break;
             case 'bottom':
@@ -201,14 +245,25 @@ export class PopoverInner extends Component {
     }
 }
 
+/**
+ * Bootstrap Popover Toggle integration
+ * @see [Bootstrap Popovers]{@link https://getbootstrap.com/docs/4.0/components/popovers/}
+ *
+ * @class PopoverToggle
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class PopoverToggle extends Component {
     static propTypes = {
         ...Tag.propTypes,
-    }
+    };
 
     static defaultProps = {
         tag: 'span'
-    }
+    };
 
     static contextTypes = {
         popover: PropTypes.shape({
@@ -219,12 +274,16 @@ export class PopoverToggle extends Component {
             setTarget: PropTypes.func.isRequired,
             getTarget: PropTypes.func.isRequired,
         })
-    }        
+    };
 
     render() {
         const { className, ...props } = this.props;
         const classes = Classnames(className, 'popover-toggle');
-        return <Tag {...props} className={classes} onMouseDown={this.onMouseDown} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} />
+        return <Tag {...props} className={classes} 
+            onMouseDown={this.onMouseDown} 
+            onMouseEnter={this.onMouseEnter} 
+            onMouseLeave={this.onMouseLeave} 
+        />
     }
 
     componentDidMount() {
@@ -247,13 +306,25 @@ export class PopoverToggle extends Component {
     }
 }
 
+/**
+ * Bootstrap Popover Header integration
+ * @see [Bootstrap Popovers]{@link https://getbootstrap.com/docs/4.0/components/popovers/}
+ *
+ * @class PopoverHeader
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class PopoverHeader extends Component {
     static propTypes = {
         ...Tag.propTypes,
-    }
+    };
+
     static defaultProps = {
         tag: 'h3'
-    }
+    };
 
     render() {
         const { className, ...props } = this.props;
@@ -262,13 +333,25 @@ export class PopoverHeader extends Component {
     }
 }
 
+/**
+ * Bootstrap Popover Body integration
+ * @see [Bootstrap Popovers]{@link https://getbootstrap.com/docs/4.0/components/popovers/}
+ *
+ * @class PopoverBody
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class PopoverBody extends Component {
     static propTypes = {
         ...Tag.propTypes,
-    }
+    };
+
     static defaultProps = {
         tag: 'section'
-    }
+    };
 
     render() {
         const { className, ...props } = this.props;

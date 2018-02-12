@@ -7,8 +7,18 @@ import Classnames from 'classnames';
 import Collapse from './collapse';
 import Navbar from './navbar';
 
-/** @TODO: add generated menu */
-
+/**
+ * Sidebar integration
+ *
+ * @class Sidebar
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.layout] - Specify that sidebar must take all screen height
+ * @property {String|Number} [props.width] - Sidebar width
+ */
 export default class Sidebar extends Component {
     static propTypes = {
         ...Navbar.propTypes,
@@ -19,9 +29,14 @@ export default class Sidebar extends Component {
     render() {
         const { align, className, color, layout, width, ...props } = this.props;
         const classes = Classnames(className, 'sidebar', layout && 'sidebar-layout');
-        const collapseClasses = Classnames('flex-column', `justify-content-${align || 'between'}`, 'h-100', layout && 'mx-0');
+        const collapseClasses = Classnames('flex-column', 
+            `justify-content-${align || 'between'}`, 
+            'h-100', 
+            layout && 'mx-0'
+        );
 
-        return <Navbar {...props} className={classes} color={`${color}-light`} style={width && { width: typeof width ==  'string' ? width : `${width}rem` }}>
+        return <Navbar {...props} className={classes} color={`${color}-light`} 
+            style={width && { width: typeof width ==  'string' ? width : `${width}rem` }}>
             <Collapse active={true} navbar className={collapseClasses}>
                 {this.props.children}
             </Collapse>

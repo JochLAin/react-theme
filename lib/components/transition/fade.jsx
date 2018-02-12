@@ -6,15 +6,24 @@ import PropTypes from 'prop-types';
 import Tag from '../tag';
 import Transition from './index';
 
+/**
+ * Fade animation
+ *
+ * @class Fade
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @root Theme.Transition
+ * @property {Object} [props] - Component properties
+ */
 export default class FadeTransition extends Component {
     static propTypes = {
         ...Tag.propTypes,
         ...Transition.propTypes,
-        className: PropTypes.string,
-        timeout: PropTypes.number,
     };
+
     static defaultProps = {
-        ...Transition.defaultProps,
         appear: true,
         enter: true,
         exit: true,

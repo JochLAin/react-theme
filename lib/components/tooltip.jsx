@@ -7,6 +7,21 @@ import Classnames from 'classnames';
 import Fade from './transition/fade';
 import Tag from './tag';
 
+/**
+ * Bootstrap Tooltip integration
+ * @see [Bootstrap Tooltip]{@link https://getbootstrap.com/docs/4.0/components/tooltips/}
+ *
+ * @class TooltipControlled
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Set popover to active state
+ * @property {Function} [props.enable] - Set popover to active state
+ * @property {Function} [props.disable] - Set popover to inactive state
+ * @property {Function} [props.toggle] - Toggle popover to active state
+ */
 class TooltipControlled extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -42,13 +57,26 @@ class TooltipControlled extends Component {
 
     render() {
         const { active, className, direction, enable, disable, ...props } = this.props;
-        const classes = Classnames(className, 'tooltip');
+        const classes = Classnames(className, 'tooltip-layout');
         return <Tag {...props} className={classes} />
     }
 }
 
+/**
+ * Bootstrap Tooltip simplier integration
+ * @see [Bootstrap Tooltip]{@link https://getbootstrap.com/docs/4.0/components/tooltips/}
+ *
+ * @class Tooltip
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.controlled] - Set tooltip to controlled state
+ */
 export default class Tooltip extends Component {
     static propTypes = {
+        ...TooltipControlled.propTypes,
         controlled: PropTypes.bool,
     }
 
@@ -66,7 +94,9 @@ export default class Tooltip extends Component {
     render() {
         let { controlled, ...props } = this.props;
         if (controlled) return <TooltipControlled {...props} />
-        return <TooltipControlled {...props} active={this.state.inside} enable={this.enable} disable={this.disable} />
+        return <TooltipControlled {...props} active={this.state.inside} 
+            enable={this.enable} disable={this.disable} 
+        />
     }
 
     componentWillUnmount() {
@@ -74,12 +104,24 @@ export default class Tooltip extends Component {
     }
 }
 
+/**
+ * Bootstrap Tooltip Inner integration
+ * @see [Bootstrap Tooltip]{@link https://getbootstrap.com/docs/4.0/components/tooltips/}
+ *
+ * @class TooltipInner
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean|String|Number} [props.arrow] - Specify what kind of arrow appear
+ * @property {String} [props.direction] - Specify direction where popover will appear (auto|top|bottom|left|right)
+ */
 export class TooltipInner extends Component {
     static propTypes = {
         ...Fade.propTypes,
         arrow: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
         direction: PropTypes.oneOf(['auto', 'top','bottom','left','right']),
-        transition: PropTypes.shape(Fade.propTypes),
     }
 
     static defaultProps = {
@@ -99,11 +141,12 @@ export class TooltipInner extends Component {
 
     render() {
         const { active } = this.context.tooltip;
-        const { arrow, className, children, direction, transition, ...props } = this.props;
-        const classes = Classnames(className, 'tooltip-inner', `tooltip-${this.props.direction}`, { active });
+        const { arrow, className, children, direction, ...props } = this.props;
+        const classes = Classnames(className, 'tooltip', `tooltip-${this.props.direction}`, { active });
         const arrowClasses = Classnames(className, 'arrow', arrow === true && 'arrow-middle');
 
-        return <Fade {...props} {...transition} className={classes} active={this.context.tooltip.active} role="tooltip" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+        return <Fade {...props} className={classes} active={this.context.tooltip.active} role="tooltip" 
+            onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
             {arrow && <section className={arrowClasses} />}
             {children}
         </Fade>
@@ -169,14 +212,25 @@ export class TooltipInner extends Component {
     }
 }
 
+/**
+ * Bootstrap Tooltip Toggle integration
+ * @see [Bootstrap Tooltip]{@link https://getbootstrap.com/docs/4.0/components/tooltips/}
+ *
+ * @class TooltipToggle
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class TooltipToggle extends Component {
     static propTypes = {
         ...Tag.propTypes,
-    }
+    };
 
     static defaultProps = {
         tag: 'span'
-    }
+    };
 
     static contextTypes = {
         tooltip: PropTypes.shape({
@@ -186,12 +240,15 @@ export class TooltipToggle extends Component {
             setTarget: PropTypes.func.isRequired,
             getTarget: PropTypes.func.isRequired,
         })
-    }        
+    };
 
     render() {
         const { className, ...props } = this.props;
         const classes = Classnames(className, 'tooltip-toggle');
-        return <Tag {...props} className={classes} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} />
+        return <Tag {...props} className={classes} 
+            onMouseEnter={this.onMouseEnter} 
+            onMouseLeave={this.onMouseLeave} 
+        />
     }
 
     componentDidMount() {
@@ -210,13 +267,25 @@ export class TooltipToggle extends Component {
     }
 }
 
+/**
+ * Bootstrap Tooltip Body integration
+ * @see [Bootstrap Tooltip]{@link https://getbootstrap.com/docs/4.0/components/tooltips/}
+ *
+ * @class TooltipBody
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class TooltipBody extends Component {
     static propTypes = {
         ...Tag.propTypes,
-    }
+    };
+
     static defaultProps = {
         tag: 'section'
-    }
+    };
 
     render() {
         const { className, ...props } = this.props;

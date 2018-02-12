@@ -1,13 +1,13 @@
 .icon {
     background: $white;
     color: $black;
-    font-size: 100px;
     line-height: 1;
-    overflow: hidden;
 
     &.icon-card {
+        font-size: 100px;
         font-family: Card;
         line-height: 0.98;
+        overflow: hidden;
 
         &.card-hidden {
             &.card-vertical {
@@ -20,27 +20,38 @@
     }
 
     &.icon-chess {
+        font-size: 100px;
         font-family: Chess;
+        overflow: hidden;
     }
 
     &.icon-checkers {
+        font-size: 100px;
         font-family: Checkers;
+        overflow: hidden;
     }
 
     &.icon-dice {
+        font-size: 100px;
         font-family: Dice;
         overflow: visible;
     }
 
     &.icon-domino {
+        font-size: 100px;
         font-family: Domino;
+        overflow: hidden;
     }
 
     &.icon-mahjong {
+        font-size: 100px;
         font-family: Mahjong;
+        overflow: hidden;
     }
 
     &.icon-zodiac {
+        font-size: 100px;
         font-family: Zodiac;
+        overflow: hidden;
     }
 }

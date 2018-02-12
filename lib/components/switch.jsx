@@ -5,6 +5,19 @@ import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import Tag from './tag';
 
+/**
+ * Switch integration
+ *
+ * @class SwitchControlled
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Set switch to active state
+ * @property {String} [props.color] - Background color when active
+ * @property {String} [props.background] - Background color when inactive
+ */
 class SwitchControlled extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -34,8 +47,20 @@ class SwitchControlled extends Component {
     }
 }
 
+/**
+ * Switch simplier integration
+ *
+ * @class Switch
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.controlled] - Specify that switch is controlled
+ */
 export default class Switch extends Component {
     static propTypes = {
+        ...SwitchControlled.propTypes,
         controlled: PropTypes.bool,
     };
 

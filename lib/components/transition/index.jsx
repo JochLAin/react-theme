@@ -13,6 +13,33 @@ export const ENTERED = 'entered';
 export const EXITING = 'exiting';
 export const STATUS = [UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING];
 
+/**
+ * Transition manager for animation
+ * @see [React Community - Transition Group]{@link https://reactcommunity.org/react-transition-group/}
+ *
+ * @class Transition
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.appear] - Define if element can appear on mouting
+ * @property {Boolean} [props.enter] - Add callback and timeout on entered state
+ * @property {Boolean} [props.exit] - Add callback and timeout on exited state
+ * @property {Boolean} [props.active] - Set element state to active
+ * @property {Boolean} [props.mountOnEnter] - Define if element can be in unmounted state on mounting when is not active
+ * @property {Boolean} [props.unmountOnExit] - Define if element can be in unmounted state
+ * @property {Number|Object} [props.timeout] - Timeout between state change
+ * @property {Number} [props.timeout.appear] - Timeout between appear state
+ * @property {Number} [props.timeout.enter] - Timeout between enter state
+ * @property {Number} [props.timeout.exit] - Timeout between exit state
+ * @property {Function} [props.onEnter] - Callback on specific state change
+ * @property {Function} [props.onEntering] - Callback on specific state change
+ * @property {Function} [props.onEntered] - Callback on specific state change
+ * @property {Function} [props.onExit] - Callback on specific state change
+ * @property {Function} [props.onExiting] - Callback on specific state change
+ * @property {Function} [props.onExited] - Callback on specific state change
+ * @property {Function} [props.onRender] - Callback on state change
+ */
 export default class Transition extends Component {
     static UNMOUNTED = UNMOUNTED;
     static EXIT = EXIT;
@@ -30,7 +57,6 @@ export default class Transition extends Component {
         active: PropTypes.bool,
         mountOnEnter: PropTypes.bool,
         unmountOnExit: PropTypes.bool,
-        
         addEndListener: PropTypes.func,
         onEnter: PropTypes.func,
         onEntering: PropTypes.func,
@@ -47,8 +73,9 @@ export default class Transition extends Component {
                 enter: PropTypes.number,
                 exit: PropTypes.number
             })
-        ]).isRequired,
+        ]),
     };
+
     static defaultProps = {
         appear: false,
         exit: true,
@@ -74,7 +101,7 @@ export default class Transition extends Component {
             ...attr
         } = props;
         return attr;
-    }
+    };
 
     static getTransitionProps = props => {
         const { 
@@ -87,10 +114,12 @@ export default class Transition extends Component {
             addEndListener, onEnter, onEntering, onEntered, onExit, 
             onExiting, onExited, timeout
         };
-    }
+    };
 
-    constructor(props) {
-        super(props);
+    callback = null;
+    constructor(props, context) {
+        super(props, context);
+
         if (this.props.active) {
             if (this.props.appear) {
                 status = EXITED;
@@ -101,7 +130,6 @@ export default class Transition extends Component {
             else status = EXITED;
         }
         this.state = { status };
-        this.callback = null;
     }
 
     componentWillReceiveProps(props) {
@@ -231,7 +259,7 @@ export default class Transition extends Component {
             return { appear, enter, exit };
         }
         let exit, enter, appear;
-        exit = enter = appear = timeout;
+        exit = enter = appear = timeout || 0;
         return { appear, enter, exit };
     }
 }

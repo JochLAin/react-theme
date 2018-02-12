@@ -6,12 +6,42 @@ import Classnames from 'classnames';
 import Input from './input';
 import Tag from './tag';
 
+/**
+ * Bootstrap Label integration
+ * @see [Bootstrap Forms]{https://getbootstrap.com/docs/4.0/components/forms/}
+ * @see [Bootstrap Custom Forms]{https://getbootstrap.com/docs/4.0/components/forms/#custom-forms}
+ *
+ * @class Label
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {String} [props.custom] - Set custom style for checkbox/radio/file
+ * @property {Boolean} [props.check] - Specify if the label contains check input
+ * @property {String} [props.size] - Input group size (sm, lg)
+ * @property {Array} [props.widths] - Breakpoints alias
+ * @property {Boolean|Number|String|Object} [props.xs] - Breakpoint size
+ * @property {Boolean|Number|String} props.xs.size - Breakpoint size
+ * @property {Boolean|Number|String} props.xs.offset - Breakpoint offset
+ * @property {Boolean|Number|String|Object} [props.sm] - Breakpoint size
+ * @property {Boolean|Number|String} props.sm.size - Breakpoint size
+ * @property {Boolean|Number|String} props.sm.offset - Breakpoint offset
+ * @property {Boolean|Number|String|Object} [props.md] - Breakpoint size
+ * @property {Boolean|Number|String} props.md.size - Breakpoint size
+ * @property {Boolean|Number|String} props.md.offset - Breakpoint offset
+ * @property {Boolean|Number|String|Object} [props.lg] - Breakpoint size
+ * @property {Boolean|Number|String} props.lg.size - Breakpoint size
+ * @property {Boolean|Number|String} props.lg.offset - Breakpoint offset
+ * @property {Boolean|Number|String|Object} [props.xl] - Breakpoint size
+ * @property {Boolean|Number|String} props.xl.size - Breakpoint size
+ * @property {Boolean|Number|String} props.xl.offset - Breakpoint offset
+ */
 export default class Label extends Component {
     static propTypes = {
         ...Tag.propTypes,
         custom: PropTypes.oneOf(['checkbox', 'radio', 'file']),
         check: PropTypes.bool,
-        checked: PropTypes.bool,
         size: PropTypes.number,
         color: PropTypes.string,
         widths: PropTypes.array,
@@ -20,10 +50,15 @@ export default class Label extends Component {
             PropTypes.number,
             PropTypes.string,
             PropTypes.shape({
-                size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-                push: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                pull: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+                size: PropTypes.oneOfType([
+                    PropTypes.bool, 
+                    PropTypes.number, 
+                    PropTypes.string
+                ]),
+                offset: PropTypes.oneOfType([
+                    PropTypes.number, 
+                    PropTypes.string
+                ])
             })
         ]),
         sm: PropTypes.oneOfType([
@@ -31,10 +66,15 @@ export default class Label extends Component {
             PropTypes.number,
             PropTypes.string,
             PropTypes.shape({
-                size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-                push: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                pull: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+                size: PropTypes.oneOfType([
+                    PropTypes.bool, 
+                    PropTypes.number, 
+                    PropTypes.string
+                ]),
+                offset: PropTypes.oneOfType([
+                    PropTypes.number, 
+                    PropTypes.string
+                ])
             })
         ]),
         md: PropTypes.oneOfType([
@@ -42,10 +82,15 @@ export default class Label extends Component {
             PropTypes.number,
             PropTypes.string,
             PropTypes.shape({
-                size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-                push: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                pull: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+                size: PropTypes.oneOfType([
+                    PropTypes.bool, 
+                    PropTypes.number, 
+                    PropTypes.string
+                ]),
+                offset: PropTypes.oneOfType([
+                    PropTypes.number, 
+                    PropTypes.string
+                ])
             })
         ]),
         lg: PropTypes.oneOfType([
@@ -53,10 +98,15 @@ export default class Label extends Component {
             PropTypes.number,
             PropTypes.string,
             PropTypes.shape({
-                size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-                push: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                pull: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+                size: PropTypes.oneOfType([
+                    PropTypes.bool, 
+                    PropTypes.number, 
+                    PropTypes.string
+                ]),
+                offset: PropTypes.oneOfType([
+                    PropTypes.number, 
+                    PropTypes.string
+                ])
             })
         ]),
         xl: PropTypes.oneOfType([
@@ -64,21 +114,29 @@ export default class Label extends Component {
             PropTypes.number,
             PropTypes.string,
             PropTypes.shape({
-                size: PropTypes.oneOfType([PropTypes.bool, PropTypes.number, PropTypes.string]),
-                push: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                pull: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+                size: PropTypes.oneOfType([
+                    PropTypes.bool, 
+                    PropTypes.number, 
+                    PropTypes.string
+                ]),
+                offset: PropTypes.oneOfType([
+                    PropTypes.number, 
+                    PropTypes.string
+                ])
             })
         ]),
-    }
+    };
 
     static defaultProps = {
         tag: 'label',
         widths: ['xs', 'sm', 'md', 'lg', 'xl']
-    }
+    };
 
     render() {
-        const { custom, color, className, xs, sm, md, lg, xl, size, widths, check, checked, hidden, ...props } = this.props;
+        const { custom, color, className, 
+            xs, sm, md, lg, xl, size, 
+            widths, check, hidden, ...props 
+        } = this.props;
 
         let classes = [];
         for (let index in widths) {
@@ -89,9 +147,9 @@ export default class Label extends Component {
 
             const interfix = !index ? '-' : `-${widths[index]}-`;
             const classname = Classnames(
-                (column.size === true || column.size === '') ? (!index ? 'col' : `col-${widths[index]}`) : `col${interfix}${column.size}`,
-                (column.push || column.push === 0) && `push${interfix}${column.push}`,
-                (column.pull || column.pull === 0) && `pull${interfix}${column.pull}`,
+                (column.size === true || column.size === '') 
+                    ? (!index ? 'col' : `col-${widths[index]}`) 
+                    : `col${interfix}${column.size}`,
                 (column.offset || column.offset === 0) && `offset${interfix}${column.offset}`
             );
             classes.push(classname);
@@ -119,7 +177,7 @@ export default class Label extends Component {
                     </Tag>
                 }
                 return <Tag {...props} className={classes}>
-                    {this.props.children || <Input type={custom} custom checked={checked} readOnly />}
+                    {this.props.children || <Input type={custom} custom readOnly />}
                     <span className={Classnames('custom-control-indicator', color && `indicator-${color}`)} />
                     <span className="custom-control-description" />
                 </Tag>

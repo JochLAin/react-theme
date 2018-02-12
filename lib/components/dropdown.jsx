@@ -7,6 +7,23 @@ import ReactDOM from 'react-dom';
 import Button from './button';
 import Tag from './tag';
 
+/**
+ * Bootstrap Dropdown integration
+ * @see [Bootstrap Dropdowns]{@link https://getbootstrap.com/docs/4.0/components/dropdowns/}
+ *
+ * @class DropdownControlled
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Set dropdown to active state
+ * @property {Boolean} [props.disabled] - Prevent click on dropdown
+ * @property {Boolean} [props.dropdup] - Show dropdown above
+ * @property {Boolean} [props.group] - Specify that dropdown is used with button group
+ * @property {String} [props.size] - Dropdown size
+ * @property {Function} [props.toggle] - Callback which active/inactive dropdown
+ */
 class DropdownControlled extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -50,7 +67,12 @@ class DropdownControlled extends Component {
 
     render() {
         const { className, disabled, dropup, active, group, size, toggle, ...props } = this.props;
-        const classes = Classnames(className, group && 'btn-group', !!size && `btn-group-${size}`, !group && 'dropdown', { dropup });
+        const classes = Classnames(className, 
+            group && 'btn-group', 
+            !!size && `btn-group-${size}`, 
+            !group && 'dropdown', 
+            { dropup }
+        );
         return <Tag {...props} className={classes} onKeyDown={this.onKeyDown} />
     }
 
@@ -84,7 +106,11 @@ class DropdownControlled extends Component {
         const keyCodes = { esc: 27, space: 32, tab: 9, up: 38, down: 40 };
         if (event && (event.which === 3 || (event.type === 'keyup' && event.which !== keyCodes.tab))) return;
         const container = ReactDOM.findDOMNode(this);
-        if (container.contains(event.target) && container !== event.target && (event.type !== 'keyup' || event.which === keyCodes.tab)) return;
+        if (container.contains(event.target) 
+        && container !== event.target 
+        && (event.type !== 'keyup' || event.which === keyCodes.tab)) {
+            return;
+        }
         this.onToggle(event);
     }
 
@@ -131,8 +157,22 @@ class DropdownControlled extends Component {
     }
 }
 
+/**
+ * Bootstrap Dropdwn simplier integration
+ * @see [Bootstrap Dropdowns]{@link https://getbootstrap.com/docs/4.0/components/dropdowns/}
+ *
+ * @class Dropdwn
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @root Theme.DropdownControlled
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.controlled] - Set dropdown to controlled state
+ */
 export default class Dropdown extends Component {
     static propTypes = {
+        ...DropdownControlled.propTypes,
         controlled: PropTypes.bool,
     };
 
@@ -145,6 +185,23 @@ export default class Dropdown extends Component {
     }
 }
 
+/**
+ * Bootstrap Dropdown Item integration
+ * @see [Bootstrap Menu Item]{@link https://getbootstrap.com/docs/4.0/components/dropdowns/#menu-items}
+ *
+ * @class DropdownItem
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Set item to active state
+ * @property {Boolean} [props.disabled] - Prevent click on item
+ * @property {Boolean} [props.divider] - Specify that item is a divider
+ * @property {Boolean} [props.header] - Specify that element is a header
+ * @property {Function} [props.toggle] - Callback on click for button
+ * @property {Boolean} [props.nav] - Specify that it's a nav dropdown
+ */
 export class DropdownItem extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -171,13 +228,22 @@ export class DropdownItem extends Component {
         let { className, divider, disabled, header, active, onClick, tag, nav, toggle, ...props } = this.props;
         const index = (disabled || header || divider) ? -1 : 0;
         const type = (tag === 'button' && (onClick || toggle) && !header && !divider) ? 'button' : undefined;
-        const classes = Classnames(className, { disabled, active }, (!divider && !header) && 'dropdown-item', header && 'dropdown-header', divider && 'dropdown-divider', nav && 'nav-link');
+        const classes = Classnames(className, 
+            { disabled, active }, 
+            (!divider && !header) && 'dropdown-item', 
+            header && 'dropdown-header', 
+            divider && 'dropdown-divider', 
+            nav && 'nav-link'
+        );
 
         if (!tag && header) tag = 'h6';
         else if (!tag && divider) tag = 'section';
         else if (!tag && props.href) tag = 'a';
         else if (!tag) tag = 'button';
-        return <Tag type={type} {...props} tag={tag} tabIndex={index} className={classes} disabled={disabled} onClick={this.onClick} />
+        return <Tag type={type} {...props} tag={tag} 
+            tabIndex={index} className={classes} 
+            disabled={disabled} onClick={this.onClick} 
+        />
     }
 
     onClick = event => {
@@ -188,16 +254,28 @@ export class DropdownItem extends Component {
     }
 }
 
+/**
+ * Bootstrap Dropdown Inner integration
+ * @see [Bootstrap Dropdowns]{@link https://getbootstrap.com/docs/4.0/components/dropdowns/}
+ *
+ * @class DropdownInner
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.right] - Set inner align to right end
+ */
 export class DropdownInner extends Component {
     static propTypes = {
         ...Tag.propTypes,
         right: PropTypes.bool,
-        flip: PropTypes.bool,
     };
 
     static defaultProps = {
+        role: 'menu',
+        tabIndex: -1,
         tag: 'section',
-        flip: true,
     };
 
     static contextTypes = {
@@ -212,9 +290,15 @@ export class DropdownInner extends Component {
     };
 
     render() {
-        const { className, right, flip, ...props } = this.props;
-        const classes = Classnames(className, 'dropdown-menu', right && 'dropdown-menu-right', this.context.dropdown.active && 'show');
-        return <Tag tabIndex="-1" role="menu" {...props} aria-hidden={!this.context.dropdown.active} className={classes} />
+        const { className, right, ...props } = this.props;
+        const classes = Classnames(className, 
+            'dropdown-menu', 
+            right && 'dropdown-menu-right', 
+            this.context.dropdown.active && 'show'
+        );
+        return <Tag {...props} className={classes}
+            aria-hidden={!this.context.dropdown.active}
+        />
     }
 
     componentDidMount() {
@@ -267,6 +351,23 @@ export class DropdownInner extends Component {
     }
 }
 
+/**
+ * Bootstrap Dropdown Toggle integration
+ * @see [Bootstrap Dropdowns]{@link https://getbootstrap.com/docs/4.0/components/dropdowns/}
+ *
+ * @class DropdownToggle
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Set toggle to active state
+ * @property {Boolean} [props.caret] - Add caret on right of text
+ * @property {String} [props.color] - Background color
+ * @property {Boolean} [props.disabled] - Prevent click
+ * @property {Boolean} [props.split] - Specify that dropdown toggle is splitted
+ * @property {Boolean} [props.nav] - Specify that it's a nav dropdown
+ */
 export class DropdownToggle extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -295,12 +396,20 @@ export class DropdownToggle extends Component {
 
     render() {
         let { active, className, color, caret, split, nav, tag, ...props } = this.props;
-        const classes = Classnames(className, (caret || split) && 'dropdown-toggle', split && 'dropdown-toggle-split', nav && 'nav-link', { active });
+        const classes = Classnames(className, 
+            (caret || split) && 'dropdown-toggle', 
+            split && 'dropdown-toggle-split', 
+            nav && 'nav-link', 
+            { active }
+        );
         if (nav && !tag) { tag = 'a'; props.href = '#'; }
         else if (!tag) { tag = Button; props.color = color; }
         else if (props.href) tag = 'a';
 
-        return <Tag {...props} tag={tag} className={classes} onClick={this.onClick} aria-expanded={this.context.dropdown.active} />
+        return <Tag {...props} tag={tag} 
+            className={classes} onClick={this.onClick} 
+            aria-expanded={this.context.dropdown.active} 
+        />
     }
 
     onClick = event => {

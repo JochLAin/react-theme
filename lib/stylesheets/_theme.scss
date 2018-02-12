@@ -1,0 +1,97 @@
+@each $color, $value in $colors {
+    body.theme-primary-#{$color} {
+        .bg-theme-primary-light {
+            background-color: theme-color($color + "-light") !important;
+        }
+        .bg-theme-primary {
+            background-color: theme-color($color) !important;
+        }
+        .bg-theme-primary-dark {
+            background-color: theme-color($color + "-dark") !important;
+        }
+
+        .border-theme-primary-light {
+            border-color: theme-color($color + "-light") !important;
+        }
+        .border-theme-primary {
+            border-color: theme-color($color) !important;
+        }
+        .border-theme-primary-dark {
+            border-color: theme-color($color + "-dark") !important;
+        }
+
+        .text-theme-primary-light {
+            color: theme-color($color + "-light") !important;
+        }
+        .text-theme-primary {
+            color: theme-color($color) !important;
+        }
+        .text-theme-primary-dark {
+            color: theme-color($color + "-dark") !important;
+        }
+    }
+
+    body.theme-secondary-#{$color} {
+        .bg-theme-secondary-light {
+            background-color: theme-color($color + "-light") !important;
+        }
+        .bg-theme-secondary {
+            background-color: theme-color($color) !important;
+        }
+        .bg-theme-secondary-dark {
+            background-color: theme-color($color + "-dark") !important;
+        }
+
+        .border-theme-secondary-light {
+            border-color: theme-color($color + "-light") !important;
+        }
+        .border-theme-secondary {
+            border-color: theme-color($color) !important;
+        }
+        .border-theme-secondary-dark {
+            border-color: theme-color($color + "-dark") !important;
+        }
+
+        .text-theme-secondary-light {
+            color: theme-color($color + "-light") !important;
+        }
+        .text-theme-secondary {
+            color: theme-color($color) !important;
+        }
+        .text-theme-secondary-dark {
+            color: theme-color($color + "-dark") !important;
+        }
+    }
+
+    body.theme-extra-#{$color} {
+        .bg-theme-extra-light {
+            background-color: theme-color($color + "-light") !important;
+        }
+        .bg-theme-extra {
+            background-color: theme-color($color) !important;
+        }
+        .bg-theme-extra-dark {
+            background-color: theme-color($color + "-dark") !important;
+        }
+
+        .border-theme-extra-light {
+            border-color: theme-color($color + "-light") !important;
+        }
+        .border-theme-extra {
+            border-color: theme-color($color) !important;
+        }
+        .border-theme-extra-dark {
+            border-color: theme-color($color + "-dark") !important;
+        }
+
+        .text-theme-extra-light {
+            color: theme-color($color + "-light") !important;
+        }
+        .text-theme-extra {
+            color: theme-color($color) !important;
+        }
+        .text-theme-extra-dark {
+            color: theme-color($color + "-dark") !important;
+        }
+    }
+}

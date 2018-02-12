@@ -6,14 +6,27 @@ import Classnames from 'classnames';
 import Icon from './icon';
 import Tag from './tag';
 
+/**
+ * Bootstrap Pagination integration
+ * @see [Bootstrap Pagination]{@link https://getbootstrap.com/docs/4.0/components/pagination/}
+ *
+ * @class Pagination
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {String} [props.size] - Input size (sm, lg)
+ */
 export default class Pagination extends Component {
     static propTypes = {
         ...Tag.propTypes,
         size: PropTypes.string,
-    }
+    };
+
     static defaultProps = {
-        tag: 'ul'
-    }
+        tag: 'ul',
+    };
 
     render() {
         const { className, size, ...props } = this.props;
@@ -22,15 +35,29 @@ export default class Pagination extends Component {
     }
 }
 
+/**
+ * Bootstrap Page Item integration
+ * @see [Bootstrap Pagination]{@link https://getbootstrap.com/docs/4.0/components/pagination/}
+ *
+ * @class PageItem
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Apply active style
+ * @property {Boolean} [props.disabled] - Apply idsabled style
+ */
 export class PageItem extends Component {
     static propTypes = {
         ...Tag.propTypes,
         active: PropTypes.bool,
         disabled: PropTypes.bool,
-    }
+    };
+
     static defaultProps = {
         tag: 'li'
-    }
+    };
 
     render() {
         const { active, className, disabled, ...props } = this.props;
@@ -39,6 +66,22 @@ export class PageItem extends Component {
     }
 }
 
+/**
+ * Bootstrap Page Link integration
+ * @see [Bootstrap Pagination]{@link https://getbootstrap.com/docs/4.0/components/pagination/}
+ *
+ * @class PageLink
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {bool} [props.first] - Set angle double left icon as children if not provided
+ * @property {bool} [props.last] - Set angle double right icon as children if not provided
+ * @property {bool} [props.previous] - Set angle left icon as children if not provided
+ * @property {bool} [props.next] - Set angle right icon as children if not provided
+ * @property {bool} [props.item] - Wrap link into a Theme.PageLink
+ */
 export class PageLink extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -47,12 +90,12 @@ export class PageLink extends Component {
         next: PropTypes.bool,
         previous: PropTypes.bool,
         item: PropTypes.bool,
-    }
+    };
 
     static defaultProps = {
         href: 'javascript:void(0);',
         tag: 'a',
-    }
+    };
 
     render() {
         const { first, last, next, previous, item, className, ...props } = this.props;
@@ -64,7 +107,9 @@ export class PageLink extends Component {
         else if (!children && next) children = <Icon name="angle-right" />
 
         const label = props['aria-label'] || (previous && 'Précédent') || (next && 'Suivant') || (first && 'Début') || (last && 'Fin');
-        if (item) return <PageItem><Tag {...props} aria-label={label} className={classes} children={children} /></PageItem>
+        if (item) return <PageItem>
+            <Tag {...props} aria-label={label} className={classes} children={children} />
+        </PageItem>
         return <Tag {...props} aria-label={label} className={classes} children={children} />
     }
 }

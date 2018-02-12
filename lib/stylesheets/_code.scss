@@ -1,7 +1,7 @@
 .code {
-    // &.code-agate {
-    //     @import "~highlight.js/styles/agate.css";
-    // }
+    &.code-agate {
+        @import "~highlight.js/styles/agate.css";
+    }
     // &.code-androidstudio {
     //     @import "~highlight.js/styles/androidstudio.css";
     // }

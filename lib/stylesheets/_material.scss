@@ -17,8 +17,8 @@ $red-lighter:   $red-100 !default;
 $red-light:     $red-400 !default;
 $red-dark:      $red-600 !default;
 $red-darker:    $red-900 !default;
-$red-colors: () !default;
-$red-colors: map-merge((
+$red-shades: () !default;
+$red-shades: map-merge((
     "red-lighter":  $red-lighter,
     "red-light":    $red-light,
     "red":          $red,
@@ -38,7 +38,7 @@ $red-colors: map-merge((
     "red-A200": $red-A200,
     "red-A400": $red-A400,
     "red-A700": $red-A700,
-), $red-colors);
+), $red-shades);
 
 $pink-50:        #FCE4EC;
 $pink-100:       #F8BBD0;
@@ -59,8 +59,8 @@ $pink-lighter:   $pink-100 !default;
 $pink-light:     $pink-400 !default;
 $pink-dark:      $pink-600 !default;
 $pink-darker:    $pink-900 !default;
-$pink-colors: () !default;
-$pink-colors: map-merge((
+$pink-shades: () !default;
+$pink-shades: map-merge((
     "pink-lighter":  $pink-lighter,
     "pink-light":    $pink-light,
     "pink":          $pink,
@@ -80,7 +80,7 @@ $pink-colors: map-merge((
     "pink-A200": $pink-A200,
     "pink-A400": $pink-A400,
     "pink-A700": $pink-A700,
-), $pink-colors);
+), $pink-shades);
 
 $purple-50:        #F3E5F5;
 $purple-100:       #E1BEE7;
@@ -101,8 +101,8 @@ $purple-lighter:   $purple-100 !default;
 $purple-light:     $purple-400 !default;
 $purple-dark:      $purple-600 !default;
 $purple-darker:    $purple-900 !default;
-$purple-colors: () !default;
-$purple-colors: map-merge((
+$purple-shades: () !default;
+$purple-shades: map-merge((
     "purple-lighter":  $purple-lighter,
     "purple-light":    $purple-light,
     "purple":          $purple,
@@ -122,7 +122,7 @@ $purple-colors: map-merge((
     "purple-A200": $purple-A200,
     "purple-A400": $purple-A400,
     "purple-A700": $purple-A700,
-), $purple-colors);
+), $purple-shades);
 
 $purple-deep-50:        #EDE7F6;
 $purple-deep-100:       #D1C4E9;
@@ -143,8 +143,8 @@ $purple-deep-lighter:   $purple-deep-100 !default;
 $purple-deep-light:     $purple-deep-400 !default;
 $purple-deep-dark:      $purple-deep-600 !default;
 $purple-deep-darker:    $purple-deep-900 !default;
-$purple-deep-colors: () !default;
-$purple-deep-colors: map-merge((
+$purple-deep-shades: () !default;
+$purple-deep-shades: map-merge((
     "purple-deep-lighter":  $purple-deep-lighter,
     "purple-deep-light":    $purple-deep-light,
     "purple-deep":          $purple-deep,
@@ -164,7 +164,7 @@ $purple-deep-colors: map-merge((
     "purple-deep-A200": $purple-deep-A200,
     "purple-deep-A400": $purple-deep-A400,
     "purple-deep-A700": $purple-deep-A700,
-), $purple-deep-colors);
+), $purple-deep-shades);
 
 $indigo-50:        #E8EAF6;
 $indigo-100:       #C5CAE9;
@@ -185,8 +185,8 @@ $indigo-lighter:   $indigo-100 !default;
 $indigo-light:     $indigo-400 !default;
 $indigo-dark:      $indigo-600 !default;
 $indigo-darker:    $indigo-900 !default;
-$indigo-colors: () !default;
-$indigo-colors: map-merge((
+$indigo-shades: () !default;
+$indigo-shades: map-merge((
     "indigo-lighter":  $indigo-lighter,
     "indigo-light":    $indigo-light,
     "indigo":          $indigo,
@@ -206,7 +206,7 @@ $indigo-colors: map-merge((
     "indigo-A200": $indigo-A200,
     "indigo-A400": $indigo-A400,
     "indigo-A700": $indigo-A700,
-), $indigo-colors);
+), $indigo-shades);
 
 $blue-50:        #E3F2FD;
 $blue-100:       #BBDEFB;
@@ -227,8 +227,8 @@ $blue-lighter:       $blue-100 !default;
 $blue-light:         $blue-400 !default;
 $blue-dark:         $blue-600 !default;
 $blue-darker:       $blue-900 !default;
-$blue-colors: () !default;
-$blue-colors: map-merge((
+$blue-shades: () !default;
+$blue-shades: map-merge((
     "blue-lighter":  $blue-lighter,
     "blue-light":    $blue-light,
     "blue":          $blue,
@@ -248,7 +248,7 @@ $blue-colors: map-merge((
     "blue-A200": $blue-A200,
     "blue-A400": $blue-A400,
     "blue-A700": $blue-A700,
-), $blue-colors);
+), $blue-shades);
 
 $blue-weak-50:        #E1F5FE;
 $blue-weak-100:       #B3E5FC;
@@ -269,8 +269,8 @@ $blue-weak-lighter:   $blue-weak-100 !default;
 $blue-weak-light:     $blue-weak-400 !default;
 $blue-weak-dark:      $blue-weak-600 !default;
 $blue-weak-darker:    $blue-weak-900 !default;
-$blue-weak-colors: () !default;
-$blue-weak-colors: map-merge((
+$blue-weak-shades: () !default;
+$blue-weak-shades: map-merge((
     "blue-weak-lighter":  $blue-weak-lighter,
     "blue-weak-light":    $blue-weak-light,
     "blue-weak":          $blue-weak,
@@ -290,7 +290,7 @@ $blue-weak-colors: map-merge((
     "blue-weak-A200": $blue-weak-A200,
     "blue-weak-A400": $blue-weak-A400,
     "blue-weak-A700": $blue-weak-A700,
-), $blue-weak-colors);
+), $blue-weak-shades);
 
 $cyan-50:        #E0F7FA;
 $cyan-100:       #B2EBF2;
@@ -311,8 +311,8 @@ $cyan-lighter:   $cyan-100 !default;
 $cyan-light:     $cyan-400 !default;
 $cyan-dark:      $cyan-600 !default;
 $cyan-darker:    $cyan-900 !default;
-$cyan-colors: () !default;
-$cyan-colors: map-merge((
+$cyan-shades: () !default;
+$cyan-shades: map-merge((
     "cyan-lighter":  $cyan-lighter,
     "cyan-light":    $cyan-light,
     "cyan":          $cyan,
@@ -332,7 +332,7 @@ $cyan-colors: map-merge((
     "cyan-A200": $cyan-A200,
     "cyan-A400": $cyan-A400,
     "cyan-A700": $cyan-A700,
-), $cyan-colors);
+), $cyan-shades);
 
 $teal-50:        #E0F2F1;
 $teal-100:       #B2DFDB;
@@ -353,8 +353,8 @@ $teal-lighter:   $teal-100 !default;
 $teal-light:     $teal-400 !default;
 $teal-dark:      $teal-600 !default;
 $teal-darker:    $teal-900 !default;
-$teal-colors: () !default;
-$teal-colors: map-merge((
+$teal-shades: () !default;
+$teal-shades: map-merge((
     "teal-lighter":  $teal-lighter,
     "teal-light":    $teal-light,
     "teal":          $teal,
@@ -374,7 +374,7 @@ $teal-colors: map-merge((
     "teal-A200": $teal-A200,
     "teal-A400": $teal-A400,
     "teal-A700": $teal-A700,
-), $teal-colors);
+), $teal-shades);
 
 $green-50:        #E8F5E9;
 $green-100:       #C8E6C9;
@@ -395,8 +395,8 @@ $green-lighter:   $green-100 !default;
 $green-light:     $green-400 !default;
 $green-dark:      $green-600 !default;
 $green-darker:    $green-900 !default;
-$green-colors: () !default;
-$green-colors: map-merge((
+$green-shades: () !default;
+$green-shades: map-merge((
     "green-lighter":  $green-lighter,
     "green-light":    $green-light,
     "green":          $green,
@@ -416,7 +416,7 @@ $green-colors: map-merge((
     "green-A200": $green-A200,
     "green-A400": $green-A400,
     "green-A700": $green-A700,
-), $green-colors);
+), $green-shades);
 
 $green-weak-50:        #F1F8E9;
 $green-weak-100:       #DCEDC8;
@@ -437,8 +437,8 @@ $green-weak-lighter:   $green-weak-100 !default;
 $green-weak-light:     $green-weak-400 !default;
 $green-weak-dark:      $green-weak-600 !default;
 $green-weak-darker:    $green-weak-900 !default;
-$green-weak-colors: () !default;
-$green-weak-colors: map-merge((
+$green-weak-shades: () !default;
+$green-weak-shades: map-merge((
     "green-weak-lighter":  $green-weak-lighter,
     "green-weak-light":    $green-weak-light,
     "green-weak":          $green-weak,
@@ -458,7 +458,7 @@ $green-weak-colors: map-merge((
     "green-weak-A200": $green-weak-A200,
     "green-weak-A400": $green-weak-A400,
     "green-weak-A700": $green-weak-A700,
-), $green-weak-colors);
+), $green-weak-shades);
 
 $lime-50:        #F9FBE7;
 $lime-100:       #F0F4C3;
@@ -479,8 +479,8 @@ $lime-lighter:   $lime-100 !default;
 $lime-light:     $lime-400 !default;
 $lime-dark:      $lime-600 !default;
 $lime-darker:    $lime-900 !default;
-$lime-colors: () !default;
-$lime-colors: map-merge((
+$lime-shades: () !default;
+$lime-shades: map-merge((
     "lime-lighter":  $lime-lighter,
     "lime-light":    $lime-light,
     "lime":          $lime,
@@ -500,7 +500,7 @@ $lime-colors: map-merge((
     "lime-A200": $lime-A200,
     "lime-A400": $lime-A400,
     "lime-A700": $lime-A700,
-), $lime-colors);
+), $lime-shades);
 
 $yellow-50:        #FFFDE7;
 $yellow-100:       #FFF9C4;
@@ -521,8 +521,8 @@ $yellow-lighter:   $yellow-100 !default;
 $yellow-light:     $yellow-400 !default;
 $yellow-dark:      $yellow-600 !default;
 $yellow-darker:    $yellow-900 !default;
-$yellow-colors: () !default;
-$yellow-colors: map-merge((
+$yellow-shades: () !default;
+$yellow-shades: map-merge((
     "yellow-lighter":  $yellow-lighter,
     "yellow-light":    $yellow-light,
     "yellow":          $yellow,
@@ -542,7 +542,7 @@ $yellow-colors: map-merge((
     "yellow-A200": $yellow-A200,
     "yellow-A400": $yellow-A400,
     "yellow-A700": $yellow-A700,
-), $yellow-colors);
+), $yellow-shades);
 
 $amber-50:        #FFF8E1;
 $amber-100:       #FFECB3;
@@ -563,8 +563,8 @@ $amber-lighter:   $amber-100 !default;
 $amber-light:     $amber-400 !default;
 $amber-dark:      $amber-600 !default;
 $amber-darker:    $amber-900 !default;
-$amber-colors: () !default;
-$amber-colors: map-merge((
+$amber-shades: () !default;
+$amber-shades: map-merge((
     "amber-lighter":  $amber-lighter,
     "amber-light":    $amber-light,
     "amber":          $amber,
@@ -584,7 +584,7 @@ $amber-colors: map-merge((
     "amber-A200": $amber-A200,
     "amber-A400": $amber-A400,
     "amber-A700": $amber-A700,
-), $amber-colors);
+), $amber-shades);
 
 $orange-50:        #FFF3E0;
 $orange-100:       #FFE0B2;
@@ -605,8 +605,8 @@ $orange-lighter:   $orange-100 !default;
 $orange-light:     $orange-400 !default;
 $orange-dark:      $orange-600 !default;
 $orange-darker:    $orange-900 !default;
-$orange-colors: () !default;
-$orange-colors: map-merge((
+$orange-shades: () !default;
+$orange-shades: map-merge((
     "orange-lighter":  $orange-lighter,
     "orange-light":    $orange-light,
     "orange":          $orange,
@@ -626,7 +626,7 @@ $orange-colors: map-merge((
     "orange-A200": $orange-A200,
     "orange-A400": $orange-A400,
     "orange-A700": $orange-A700,
-), $orange-colors);
+), $orange-shades);
 
 $orange-deep-50:        #FBE9E7;
 $orange-deep-100:       #FFCCBC;
@@ -647,8 +647,8 @@ $orange-deep-lighter:   $orange-deep-100 !default;
 $orange-deep-light:     $orange-deep-400 !default;
 $orange-deep-dark:      $orange-deep-600 !default;
 $orange-deep-darker:    $orange-deep-900 !default;
-$orange-deep-colors: () !default;
-$orange-deep-colors: map-merge((
+$orange-deep-shades: () !default;
+$orange-deep-shades: map-merge((
     "orange-deep-lighter":  $orange-deep-lighter,
     "orange-deep-light":    $orange-deep-light,
     "orange-deep":          $orange-deep,
@@ -668,7 +668,7 @@ $orange-deep-colors: map-merge((
     "orange-deep-A200": $orange-deep-A200,
     "orange-deep-A400": $orange-deep-A400,
     "orange-deep-A700": $orange-deep-A700,
-), $orange-deep-colors);
+), $orange-deep-shades);
 
 $brown-50:        #EFEBE9;
 $brown-100:       #D7CCC8;
@@ -685,8 +685,8 @@ $brown-lighter:   $brown-100 !default;
 $brown-light:     $brown-400 !default;
 $brown-dark:      $brown-600 !default;
 $brown-darker:    $brown-900 !default;
-$brown-colors: () !default;
-$brown-colors: map-merge((
+$brown-shades: () !default;
+$brown-shades: map-merge((
     "brown-lighter":  $brown-lighter,
     "brown-light":    $brown-light,
     "brown":          $brown,
@@ -702,7 +702,7 @@ $brown-colors: map-merge((
     "brown-700":  $brown-700,
     "brown-800":  $brown-800,
     "brown-900":  $brown-900,
-), $brown-colors);
+), $brown-shades);
 
 $grey-50:        #FAFAFA;
 $grey-100:       #F5F5F5;
@@ -719,8 +719,8 @@ $grey-lighter:   $grey-100 !default;
 $grey-light:     $grey-400 !default;
 $grey-dark:      $grey-600 !default;
 $grey-darker:    $grey-900 !default;
-$grey-colors: () !default;
-$grey-colors: map-merge((
+$grey-shades: () !default;
+$grey-shades: map-merge((
     "grey-lighter":  $grey-lighter,
     "grey-light":    $grey-light,
     "grey":          $grey,
@@ -736,7 +736,7 @@ $grey-colors: map-merge((
     "grey-700":  $grey-700,
     "grey-800":  $grey-800,
     "grey-900":  $grey-900,
-), $grey-colors);
+), $grey-shades);
 
 $petrol-50:        #ECEFF1;
 $petrol-100:       #CFD8DC;
@@ -753,8 +753,8 @@ $petrol-lighter:   $petrol-100 !default;
 $petrol-light:     $petrol-400 !default;
 $petrol-dark:      $petrol-600 !default;
 $petrol-darker:    $petrol-900 !default;
-$petrol-colors: () !default;
-$petrol-colors: map-merge((
+$petrol-shades: () !default;
+$petrol-shades: map-merge((
     "petrol-lighter":  $petrol-lighter,
     "petrol-light":    $petrol-light,
     "petrol":          $petrol,
@@ -770,32 +770,98 @@ $petrol-colors: map-merge((
     "petrol-700":  $petrol-700,
     "petrol-800":  $petrol-800,
     "petrol-900":  $petrol-900,
-), $petrol-colors);
+), $petrol-shades);
 
 $black: #000 !default;
 $white: #FFF !default;
 
 $material-colors: () !default;
-$material-colors: map-merge($material-colors, $red-colors);
-$material-colors: map-merge($material-colors, $pink-colors);
-$material-colors: map-merge($material-colors, $purple-colors);
-$material-colors: map-merge($material-colors, $purple-deep-colors);
-$material-colors: map-merge($material-colors, $indigo-colors);
-$material-colors: map-merge($material-colors, $blue-colors);
-$material-colors: map-merge($material-colors, $blue-weak-colors);
-$material-colors: map-merge($material-colors, $cyan-colors);
-$material-colors: map-merge($material-colors, $teal-colors);
-$material-colors: map-merge($material-colors, $green-colors);
-$material-colors: map-merge($material-colors, $green-weak-colors);
-$material-colors: map-merge($material-colors, $lime-colors);
-$material-colors: map-merge($material-colors, $yellow-colors);
-$material-colors: map-merge($material-colors, $amber-colors);
-$material-colors: map-merge($material-colors, $orange-colors);
-$material-colors: map-merge($material-colors, $orange-deep-colors);
-$material-colors: map-merge($material-colors, $brown-colors);
-$material-colors: map-merge($material-colors, $grey-colors);
-$material-colors: map-merge($material-colors, $petrol-colors);
 $material-colors: map-merge($material-colors, (
+    "red":         $red,
+    "pink":        $pink,
+    "purple":      $purple,
+    "purple-deep": $purple-deep,
+    "indigo":      $indigo,
+    "blue":        $blue,
+    "blue-weak":   $blue-weak,
+    "cyan":        $cyan,
+    "teal":        $teal,
+    "green":       $green,
+    "green-weak":  $green-weak,
+    "lime":        $lime,
+    "yellow":      $yellow,
+    "amber":       $amber,
+    "orange":      $orange,
+    "orange-deep": $orange-deep,
+    "brown":       $brown,
+    "grey":        $grey,
+    "petrol":      $petrol
+));
+
+$material-nuances: () !default;
+$material-nuances: map-merge($material-nuances, $material-colors);
+$material-nuances: map-merge($material-nuances, (
+    "red-dark":             $red-dark,
+    "red-light":            $red-light,
+    "pink-dark":            $pink-dark,
+    "pink-light":           $pink-light,
+    "purple-dark":          $purple-dark,
+    "purple-light":         $purple-light,
+    "purple-deep-dark":     $purple-deep-dark,
+    "purple-deep-light":    $purple-deep-light,
+    "indigo-dark":          $indigo-dark,
+    "indigo-light":         $indigo-light,
+    "blue-dark":            $blue-dark,
+    "blue-light":           $blue-light,
+    "blue-weak-dark":       $blue-weak-dark,
+    "blue-weak-light":      $blue-weak-light,
+    "cyan-dark":            $cyan-dark,
+    "cyan-light":           $cyan-light,
+    "teal-dark":            $teal-dark,
+    "teal-light":           $teal-light,
+    "green-dark":           $green-dark,
+    "green-light":          $green-light,
+    "green-weak-dark":      $green-weak-dark,
+    "green-weak-light":     $green-weak-light,
+    "lime-dark":            $lime-dark,
+    "lime-light":           $lime-light,
+    "yellow-dark":          $yellow-dark,
+    "yellow-light":         $yellow-light,
+    "amber-dark":           $amber-dark,
+    "amber-light":          $amber-light,
+    "orange-dark":          $orange-dark,
+    "orange-light":         $orange-light,
+    "orange-deep-dark":     $orange-deep-dark,
+    "orange-deep-light":    $orange-deep-light,
+    "brown-dark":           $brown-dark,
+    "brown-light":          $brown-light,
+    "grey-dark":            $grey-dark,
+    "grey-light":           $grey-light,
+    "petrol-dark":          $petrol-dark,
+    "petrol-light":         $petrol-light
+));
+
+$material-shades: () !default;
+$material-shades: map-merge($material-shades, $red-shades);
+$material-shades: map-merge($material-shades, $pink-shades);
+$material-shades: map-merge($material-shades, $purple-shades);
+$material-shades: map-merge($material-shades, $purple-deep-shades);
+$material-shades: map-merge($material-shades, $indigo-shades);
+$material-shades: map-merge($material-shades, $blue-shades);
+$material-shades: map-merge($material-shades, $blue-weak-shades);
+$material-shades: map-merge($material-shades, $cyan-shades);
+$material-shades: map-merge($material-shades, $teal-shades);
+$material-shades: map-merge($material-shades, $green-shades);
+$material-shades: map-merge($material-shades, $green-weak-shades);
+$material-shades: map-merge($material-shades, $lime-shades);
+$material-shades: map-merge($material-shades, $yellow-shades);
+$material-shades: map-merge($material-shades, $amber-shades);
+$material-shades: map-merge($material-shades, $orange-shades);
+$material-shades: map-merge($material-shades, $orange-deep-shades);
+$material-shades: map-merge($material-shades, $brown-shades);
+$material-shades: map-merge($material-shades, $grey-shades);
+$material-shades: map-merge($material-shades, $petrol-shades);
+$material-shades: map-merge($material-shades, (
     "black": $black,
     "white": $white,
 ));

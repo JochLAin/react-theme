@@ -1,7 +1,7 @@
 'use strict';
 
 import Action, { ActionInner } from './lib/components/action';
-import Alert, { AlertFlash, AlertHeading, AlertLink, AlertMessage } from './lib/components/alert';
+import Alert, { AlertMessage, AlertFlash, AlertHeading, AlertLink } from './lib/components/alert';
 import Badge from './lib/components/badge';
 import Breadcrumb, { BreadcrumbItem } from './lib/components/breadcrumb';
 import Button, { ButtonAction, ButtonActionItem, ButtonDropdown, ButtonGroup, ButtonIcon, ButtonToolbar, ButtonTooltip } from './lib/components/button';
@@ -37,31 +37,30 @@ import Transition from './lib/components/transition';
 import Fade from './lib/components/transition/fade';
 
 let _exports = module.exports = { 
-    Action, Alert, Badge, Breadcrumb, Button, Card, Carousel, Code, Column, Collapse, 
-    Container, Dropdown, Form, Icon, Input, Jumbotron, Label, Layer, ListGroup, Media, 
-    Nav, Navbar, Pagination, Popover, Progress, Row, Sidebar, Switch, Table, Tabs, Tag, Tooltip
+    Badge, Code, Column, Collapse, Container, Jumbotron, 
+    Label, Layer, Row, Switch, Table, Tag
 };
 
-Object.assign(_exports, { ActionInner });
-Object.assign(_exports, { AlertFlash, AlertHeading, AlertLink, AlertMessage });
-Object.assign(_exports, { BreadcrumbItem });
-Object.assign(_exports, { ButtonAction, ButtonActionItem, ButtonDropdown, ButtonGroup, ButtonIcon, ButtonToolbar, ButtonTooltip });
-Object.assign(_exports, { CardBody, CardColumns, CardDeck, CardFooter, CardGroup, CardHeader, CardImage, CardOverlay, CardLink, CardSubtitle, CardText, CardTitle });
-Object.assign(_exports, { CarouselCaption, CarouselCaptionHeader, CarouselCaptionText, CarouselControls, CarouselIndicators, CarouselInner, CarouselItem });
-Object.assign(_exports, { DropdownItem, DropdownInner, DropdownToggle });
-Object.assign(_exports, { FormFeedback, FormGroup, FormText });
-Object.assign(_exports, { IconCard, IconCheckers, IconChess, IconDice, IconDomino, IconMahjong, IconZodiac });
-Object.assign(_exports, { InputGroup, InputGroupAddon, InputGroupButton });
-Object.assign(_exports, { ListGroupItem, ListGroupItemHeading, ListGroupItemText });
-Object.assign(_exports, { MediaBody });
-Object.assign(_exports, { NavDropdown, NavLink, NavItem, NavMenu });
-Object.assign(_exports, { NavbarBrand, NavbarMenu, NavbarToggler, NavbarText });
-Object.assign(_exports, { PageItem, PageLink });
-Object.assign(_exports, { PopoverBody, PopoverHeader, PopoverInner, PopoverToggle });
-Object.assign(_exports, { ProgressBar });
-Object.assign(_exports, { SidebarMenu, SidebarItem });
-Object.assign(_exports, { TabPane });
-Object.assign(_exports, { TooltipBody, TooltipInner, TooltipToggle });
+// Object.assign(_exports, { Action, ActionInner });
+Object.assign(_exports, { Alertn AlertMessage, AlertFlash, AlertHeading, AlertLink });
+Object.assign(_exports, { Breadcrumb, BreadcrumbItem });
+Object.assign(_exports, { Button, ButtonAction, ButtonActionItem, ButtonDropdown, ButtonGroup, ButtonIcon, ButtonToolbar, ButtonTooltip });
+Object.assign(_exports, { Card, CardBody, CardColumns, CardDeck, CardFooter, CardGroup, CardHeader, CardImage, CardOverlay, CardLink, CardSubtitle, CardText, CardTitle });
+Object.assign(_exports, { Carousel, CarouselCaption, CarouselCaptionHeader, CarouselCaptionText, CarouselControls, CarouselIndicators, CarouselInner, CarouselItem });
+Object.assign(_exports, { Dropdown, DropdownItem, DropdownInner, DropdownToggle });
+Object.assign(_exports, { Form, FormFeedback, FormGroup, FormText });
+Object.assign(_exports, { Icon, IconCard, IconCheckers, IconChess, IconDice, IconDomino, IconMahjong, IconZodiac });
+Object.assign(_exports, { Input, InputGroup, InputGroupAddon, InputGroupButton });
+Object.assign(_exports, { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText });
+Object.assign(_exports, { Media, MediaBody });
+Object.assign(_exports, { Nav, NavDropdown, NavLink, NavItem, NavMenu });
+Object.assign(_exports, { Navbar, NavbarBrand, NavbarMenu, NavbarToggler, NavbarText });
+Object.assign(_exports, { Pagination, PageItem, PageLink });
+// Object.assign(_exports, { Popover, PopoverBody, PopoverHeader, PopoverInner, PopoverToggle });
+Object.assign(_exports, { Progress, ProgressBar });
+// Object.assign(_exports, { Sidebar, SidebarMenu, SidebarItem });
+Object.assign(_exports, { Tabs, TabPane });
+// Object.assign(_exports, { Tooltip, TooltipBody, TooltipInner, TooltipToggle });
 
 Object.assign(_exports, { FontAwesome });
 Object.assign(_exports, { Transition, Fade });

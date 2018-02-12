@@ -4,10 +4,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from './icon';
 
+/**
+ * Bootstrap Modal integration
+ *
+ * @class Modal
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export default class Modal extends Component {
     static propTypes = {
         large: PropTypes.bool
-    }
+    };
 
     render() {
         return [
@@ -21,6 +31,16 @@ export default class Modal extends Component {
     }
 };
 
+/**
+ * Bootstrap ModalContent integration
+ *
+ * @class ModalContent
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class ModalContent extends Component {
     static propTypes = {
         title: PropTypes.string,
@@ -43,7 +63,9 @@ export class ModalContent extends Component {
                 </header>
             )}
             {this.props.children && (
-                <section className={`modal-body${this.props.center ? ' d-flex justify-content-center' : ''}`} style={{ overflowY: 'auto' }}>
+                <section
+                    className={`modal-body${this.props.center ? ' d-flex justify-content-center' : ''}`} 
+                    style={{ overflowY: 'auto' }}>
                     {this.props.children}
                 </section>
             )}
@@ -56,6 +78,16 @@ export class ModalContent extends Component {
     }
 };
 
+/**
+ * Bootstrap ModalConfirm integration
+ *
+ * @class ModalConfirm
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class ModalConfirm extends Component {
     static propTypes = {
         title: PropTypes.string,
@@ -82,8 +114,16 @@ export class ModalConfirm extends Component {
                 </section>
             )}
             <footer className="modal-footer d-flex justify-content-between">
-                <button type={this.props.cancel_type || 'reset'} className={`btn btn-${this.props.cancel_color || 'info'}`} onClick={this.props.onCancel}>{ this.props.cancel_text || 'Annuler'}</button>
-                <button type={this.props.submit_type || 'submit'} className={`btn btn-${this.props.submit_color || 'success'}`} onClick={this.props.onSubmit}>{ this.props.submit_text || 'Valider'}</button>
+                <button type={this.props.cancel_type || 'reset'} 
+                    className={`btn btn-${this.props.cancel_color || 'info'}`} 
+                    onClick={this.props.onCancel}>
+                    { this.props.cancel_text || 'Annuler'}
+                </button>
+                <button type={this.props.submit_type || 'submit'} 
+                    className={`btn btn-${this.props.submit_color || 'success'}`} 
+                    onClick={this.props.onSubmit}>
+                    { this.props.submit_text || 'Valider'}
+                </button>
             </footer>
         </article>
     }

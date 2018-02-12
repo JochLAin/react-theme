@@ -1,7 +1,6 @@
 'use strict';
 
-import uuid from 'uuid';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 import Collapse from './collapse';
@@ -10,13 +9,25 @@ import Icon from './icon';
 import Tag from './tag';
 import { slugify } from '../utils';
 
+/**
+ * Bootstrap Nav Item integration
+ * @see [Bootstrap Navs]{@link https://getbootstrap.com/docs/4.0/components/navs/}
+ *
+ * @class NavItem
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ */
 export class NavItem extends Component {
     static propTypes = {
         ...Tag.propTypes,
-    }
+    };
+
     static defaultProps = {
         tag: 'li'
-    }
+    };
 
     render() {
         const { className, ...props } = this.props;
@@ -25,6 +36,17 @@ export class NavItem extends Component {
     }
 }
 
+/**
+ * Bootstrap Nav Dropdown integration
+ * @see [Bootstrap Nav Dropdown]{@link https://getbootstrap.com/docs/4.0/components/navs/#using-dropdowns}
+ *
+ * @class NavDropdown
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Dropdown
+ * @property {Object} [props] - Component properties
+ */
 export class NavDropdown extends Component {
     static propTypes = {
         ...Dropdown.propTypes,
@@ -41,6 +63,20 @@ export class NavDropdown extends Component {
     }
 }
 
+/**
+ * Bootstrap Nav Link integration
+ * @see [Bootstrap Navs]{@link https://getbootstrap.com/docs/4.0/components/navs/}
+ *
+ * @class NavLink
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {String} [props.active] - Apply active style
+ * @property {String} [props.disabled] - Apply disabled style
+ * @property {String} [props.item] - Wrap link with Theme.NavItem
+ */
 export class NavLink extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -57,7 +93,7 @@ export class NavLink extends Component {
     static getProps(props) {
         const { acitve, disabled, item } = props;
         return { acitve, disabled, item };
-    }
+    };
 
     render() {
         const { active, className, disabled, item, ...props } = this.props;
@@ -72,6 +108,16 @@ export class NavLink extends Component {
     }
 }
 
+/**
+ * Algorithm to generate nav menu
+ *
+ * @class NavMenu
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @property {Object} [props] - Component properties
+ * @property {Array<String|Object>} [props.menu] - Array of label[/link]
+ */
 export class NavMenu extends Component {
     static propTypes = {
         menu: PropTypes.arrayOf(PropTypes.oneOfType([
@@ -84,7 +130,7 @@ export class NavMenu extends Component {
                 ])),
             })
         ])).isRequired,
-    }
+    };
 
     static contextTypes = {
         nav: PropTypes.shape({
@@ -95,14 +141,20 @@ export class NavMenu extends Component {
     state = { deploy: undefined, active: undefined };
 
     render() {
-        return this.map(this.reduce(this.props.menu));
+        return <Fragment>
+            {this.map(this.reduce(this.props.menu))}
+        </Fragment>
     }
 
     reduce = items => {
         return items.filter(item => item).reduce((accu, item) => {
             if (typeof item == 'string') accu.push({ title: item });
             else if (Array.isArray(item)) accu = accu.concat(this.reduce(item));
-            else if (item) accu.push(Object.assign({}, item, { caret: item.caret === undefined ? this.props.caret && item.children : item.caret }));
+            else if (item) accu.push(Object.assign({}, item, { 
+                caret: item.caret === undefined 
+                    ? this.props.caret && item.children 
+                    : item.caret 
+            }));
             return accu;
         }, []);
     }
@@ -111,10 +163,18 @@ export class NavMenu extends Component {
         const { menu, ...props } = this.props;
         return items.map((item, index) => {
             const { children, ...link } = item;
-            if (!children) return <NavLink key={`nav-link-${index}`} item {...link} {...props} active={this.isActive(link, 'active')} onClick={this.onClick.bind(this, link, 'active')} className="text-capitalize" />
+            if (!children) return <NavLink item {...link} {...props} 
+                className="text-capitalize" 
+                active={this.isActive(link, 'active')} 
+                onClick={this.onClick.bind(this, link, 'active')} 
+            />
             if (!this.context.nav.vertical) {
-                return <NavDropdown key={`nav-dropdown-${index}`}>
-                    <DropdownToggle nav {...link} {...props} active={this.isActive(link, 'deploy')} onClick={this.onClick.bind(this, link, 'deploy')} className="text-capitalize" />
+                return <NavDropdown>
+                    <DropdownToggle nav {...link} {...props} 
+                        active={this.isActive(link, 'deploy')} 
+                        onClick={this.onClick.bind(this, link, 'deploy')} 
+                        className="text-capitalize"
+                    />
                     <DropdownInner>
                         {this.reduce(children).map((link, key) => {
                             return <DropdownItem key={`nav-item-${index}-${key}`} 
@@ -127,12 +187,16 @@ export class NavMenu extends Component {
                     </DropdownInner>
                 </NavDropdown>
             } else {
-                return [
-                    <NavLink key={`nav-link-${index}`} item {...link} {...props} active={this.isActive(link, 'deploy')} onClick={this.onClick.bind(this, link, 'deploy')} className="text-capitalize d-flex justify-content-between align-items-center" />,
-                    <Collapse key={`nav-collapse-${index}`} active={this.isActive(link, 'deploy')}>
+                return <Fragment>
+                    <NavLink item {...link} {...props} 
+                        active={this.isActive(link, 'deploy')} 
+                        onClick={this.onClick.bind(this, link, 'deploy')} 
+                        className="text-capitalize d-flex justify-content-between align-items-center" 
+                    />
+                    <Collapse active={this.isActive(link, 'deploy')}>
                         <NavMenu menu={children} />
                     </Collapse>
-                ];
+                </Fragment>
             }
         });
     }
@@ -149,6 +213,20 @@ export class NavMenu extends Component {
     }
 }
 
+/**
+ * Nav item content parser
+ *
+ * @class NavTag
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.active] - Apply active style
+ * @property {String} [props.title] - Label of item
+ * @property {Boolean} [props.icon] - Set icon left to label
+ * @property {Boolean} [props.caret] - Append caret right to label
+ */
 export class NavTag extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -174,6 +252,25 @@ export class NavTag extends Component {
     }
 }
 
+/**
+ * Bootstrap Nav integration
+ * @see [Bootstrap Navs]{@link https://getbootstrap.com/docs/4.0/components/navs/}
+ *
+ * @class Nav
+ * @extends React.Component
+ * @author Jocelyn Faihy <jocelyn@faihy.fr>
+ *
+ * @root Theme.Tag
+ * @property {Object} [props] - Component properties
+ * @property {Boolean} [props.tabs] - Apply tab style
+ * @property {Boolean} [props.pills] - Apply pill style
+ * @property {Boolean} [props.vertical] - Set nav vertical
+ * @property {Boolean} [props.horizontal] - Set nav horizontal
+ * @property {Boolean} [props.fill] - Apply fill style
+ * @property {Boolean} [props.justified] - Apply justified style
+ * @property {Boolean} [props.navbar] - Specify that nav is wrapped by navbar
+ * @property {Boolean} [props.card] - Specify that nav is wrapped by card
+ */
 export default class Nav extends Component {
     static propTypes = {
         ...Tag.propTypes,
@@ -206,7 +303,20 @@ export default class Nav extends Component {
     render() {
         let { className, tabs, pills, vertical, horizontal, menu, justified, fill, navbar, card, tag, ...props } = this.props;
         tag = !tag && navbar ? 'ul' : 'nav';
-        const classes = Classnames(className, navbar ? 'navbar-nav' : 'nav', horizontal && `justify-content-${horizontal}`, vertical && ((vertical === true || vertical == 'xs') ? 'flex-column' : `flex-${vertical}-column`), tabs && 'nav-tabs', card && tabs && 'card-header-tabs', pills && 'nav-pills', card && pills && 'card-header-pills', justified && 'nav-justified', fill && 'nav-fill');
+        const classes = Classnames(
+            className, 
+            navbar ? 'navbar-nav' : 'nav', 
+            horizontal && `justify-content-${horizontal}`, 
+            vertical && ((vertical === true || vertical == 'xs') 
+                ? 'flex-column' 
+                : `flex-${vertical}-column`), 
+            tabs && 'nav-tabs', 
+            card && tabs && 'card-header-tabs', 
+            pills && 'nav-pills', 
+            card && pills && 'card-header-pills', 
+            justified && 'nav-justified', 
+            fill && 'nav-fill'
+        );
         return <Tag tag={tag} {...props} className={classes}>
             {menu && <NavMenu menu={this.props.menu} />}
             {this.props.children}

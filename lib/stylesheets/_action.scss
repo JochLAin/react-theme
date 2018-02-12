@@ -1,0 +1,135 @@
+.action {
+    position: absolute;
+
+    &.action-layout {
+        position: fixed;
+        z-index: 1000;
+    }
+
+    &.action-column .action-inner {
+        flex-direction: row;
+
+        &.popover-top .btn-action-item {
+            margin-bottom: .5rem;
+        }
+
+        &.popover-bottom .btn-action-item {
+            margin-top: .5rem;
+        }
+    }
+    &.action-row .action-inner {
+        flex-direction: column;
+
+        &.popover-left .btn-action-item {
+            margin-right: .5rem;
+        }
+
+        &.popover-right .btn-action-item {
+            margin-left: .5rem;
+        }
+    }
+
+    &.action-top-left {
+        top: $action-offset;
+        left: $action-offset;
+
+        &.action-column {
+            .action-inner.popover-top  {
+                .btn-action-item { margin-top: 0.5rem; }
+            }
+            .action-inner.popover-bottom  {
+                .btn-action-item { margin-bottom: 0.5rem; }
+            }
+        }
+
+        &.action-row {
+            .action-inner.popover-left  {
+                .btn-action-item { margin-left: 0.5rem; }
+            }
+            .action-inner.popover-right  {
+                .btn-action-item { margin-right: 0.5rem; }
+            }
+        }
+    }
+
+    &.action-top-right {
+        top: $action-offset;
+        right: $action-offset;
+
+        &.action-column {
+            .action-inner.popover-top  {
+                .btn-action-item { margin-top: 0.5rem; }
+            }
+            .action-inner.popover-bottom  {
+                .btn-action-item { margin-bottom: 0.5rem; }
+            }
+        }
+
+        &.action-row {
+            .action-inner.popover-left  {
+                .btn-action-item { margin-left: 0.5rem; }
+            }
+            .action-inner.popover-right  {
+                .btn-action-item { margin-right: 0.5rem; }
+            }
+        }
+    }
+
+    &.action-bottom-left {
+        bottom: $action-offset;
+        left: $action-offset;
+
+        &.action-column {
+            .action-inner.popover-top  {
+                .btn-action-item { margin-top: 0.5rem; }
+            }
+            .action-inner.popover-bottom  {
+                .btn-action-item { margin-bottom: 0.5rem; }
+            }
+        }
+
+        &.action-row {
+            .action-inner.popover-left  {
+                .btn-action-item { margin-left: 0.5rem; }
+            }
+            .action-inner.popover-right  {
+                .btn-action-item { margin-right: 0.5rem; }
+            }
+        }
+    }
+
+    &.action-bottom-right {
+        bottom: $action-offset;
+        right: $action-offset;
+
+        &.action-column {
+            .action-inner.popover-top  {
+                .btn-action-item { margin-top: 0.5rem; }
+            }
+            .action-inner.popover-bottom  {
+                .btn-action-item { margin-bottom: 0.5rem; }
+            }
+        }
+
+        &.action-row {
+            .action-inner.popover-left  {
+                .btn-action-item { margin-left: 0.5rem; }
+            }
+            .action-inner.popover-right  {
+                .btn-action-item { margin-right: 0.5rem; }
+            }
+        }
+    }
+
+    .action-toggle {
+        display: inline-block;
+    }
+
+    .action-inner {
+        border: none;
+        background: none;
+        display: flex;
+        min-width: unset;
+        width: $btn-action-item-diameter;
+    }
+}
